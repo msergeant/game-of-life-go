@@ -2,7 +2,6 @@ package model
 
 import (
 	"fmt"
-	"reflect"
 )
 
 type World struct {
@@ -17,7 +16,7 @@ func NewWorld(cells [][]int64) World {
 // IsAlive returns true if the given cell is currently alive
 func (w World) IsAlive(cell []int64) bool {
 	for _, liveCell := range w.LiveCells {
-		if reflect.DeepEqual(cell, liveCell) {
+		if cell[0] == liveCell[0] && cell[1] == liveCell[1] {
 			return true
 		}
 	}
