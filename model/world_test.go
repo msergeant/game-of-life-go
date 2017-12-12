@@ -6,7 +6,7 @@ import (
 
 func TestNewWorldEmpty(t *testing.T) {
 	world := NewWorld([][]int64{})
-	if len(world.liveCells) != 0 {
+	if len(world.LiveCells) != 0 {
 		t.Errorf("Initializing an empty world failed")
 	}
 }
@@ -18,8 +18,8 @@ func TestNewWorldWithData(t *testing.T) {
 		{3, 3}}
 	world := NewWorld(points)
 
-	if len(world.liveCells) != len(points) {
-		t.Errorf("World had incorrect number of initial points, expected %d, got %d", len(points), len(world.liveCells))
+	if len(world.LiveCells) != len(points) {
+		t.Errorf("World had incorrect number of initial points, expected %d, got %d", len(points), len(world.LiveCells))
 	}
 }
 

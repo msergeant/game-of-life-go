@@ -7,26 +7,17 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/msergeant/game-of-life-go/model"
+	"github.com/msergeant/game-of-life-go/api"
 )
 
 type Config struct {
 	ListenSpec string
 
-	//Db db.Config
-	UI ui.Config
+	API api.Config
 }
 
 func Run(cfg *Config) error {
 	log.Printf("Starting, HTTP on: %s\n", cfg.ListenSpec)
-
-	//db, err := db.InitDb(cfg.Db)
-	//if err != nil {
-	//log.Printf("Error initializing database: %v\n", err)
-	//return err
-	//}
-
-	m := model.New(db)
 
 	l, err := net.Listen("tcp", cfg.ListenSpec)
 	if err != nil {
@@ -34,7 +25,7 @@ func Run(cfg *Config) error {
 		return err
 	}
 
-	ui.Start(cfg.UI, m, l)
+	api.Start(cfg.API, l)
 
 	waitForSignal()
 

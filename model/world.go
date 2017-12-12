@@ -6,7 +6,7 @@ import (
 )
 
 type World struct {
-	liveCells [][]int64
+	LiveCells [][]int64 `json:"live_cells"`
 }
 
 // NewWorld returns initialized World
@@ -16,7 +16,7 @@ func NewWorld(cells [][]int64) World {
 
 // IsAlive returns true if the given cell is currently alive
 func (w World) IsAlive(cell []int64) bool {
-	for _, liveCell := range w.liveCells {
+	for _, liveCell := range w.LiveCells {
 		if reflect.DeepEqual(cell, liveCell) {
 			return true
 		}
@@ -40,7 +40,7 @@ func (w World) GenerateNextIteration() World {
 func (w World) cellsToTest() (output [][]int64) {
 	setToTest := make(map[string][]int64)
 
-	for _, liveCell := range w.liveCells {
+	for _, liveCell := range w.LiveCells {
 		neighbors := neighborCells(liveCell)
 		for _, cell := range neighbors {
 			setToTest[fmt.Sprintf("%d,%d", cell[0], cell[1])] = cell

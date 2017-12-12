@@ -1,7 +1,9 @@
 package main
 
 import (
+	"flag"
 	"github.com/msergeant/game-of-life-go/daemon"
+	"log"
 )
 
 func processFlags() *daemon.Config {
@@ -16,7 +18,7 @@ func processFlags() *daemon.Config {
 func main() {
 	cfg := processFlags()
 
-	if err := daemon.Run(cfg); err != null {
+	if err := daemon.Run(cfg); err != nil {
 		log.Printf("Error in main(): %v", err)
 	}
 }
